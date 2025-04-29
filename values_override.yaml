@@ -1,44 +1,38 @@
 crowdstrikeConfig:
-  clientID: ""
-  clientSecret: ""
-  
+  clientID: "b801274e47134aa8b8b642d8e559c46c"
+  clientSecret: "Nv1eHSKL8P6ctQ53aVuWClO0h7pm4RYdTi29ygfF"
 executor:
   image:
     registry: ""
     repository: ""
     tag: ""
-
   dbStorage:
+    create: false
+    existingClaimName: falcon-executor-db
+    accessModes:
+      - ReadWriteOnce
     storageClass: ""
-
   assessmentStorage:
-    type: "PVC"
+    type: PVC
     pvc:
       storageClass: ""
-
 jobController:
   image:
     registry: ""
     repository: ""
     tag: ""
-
   dbStorage:
-    storageClass: ""
-
+    create: true
+    existingClaimName: ""
+    storageClass: ebs-sc
+    size: 1Gi
+    accessModes:
+      - ReadWriteOnce
 registryConfigs:
-  - type: dockerhub
+  - type: nexus
     credentials:
-      username: ""
-      password: ""
+      username: "admin"
+      password: "password.1"
     allowedRepositories: ""
-    port: "443"
-    host: "https://registry-1.docker.io"
-    cronSchedule: "* * * * *"
-  - type: dockerhub
-    credentials:
-      username: ""
-      password: ""
-    allowedRepositories: ""
-    port: "443"
-    host: "https://registry-2.docker.io"
-    cronSchedule: "0 0 * * *"
+    host: http://172.31.26.134:5001
+    cronSchedule: 0 * * * *
