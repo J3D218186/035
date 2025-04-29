@@ -1,0 +1,44 @@
+crowdstrikeConfig:
+  clientID: ""
+  clientSecret: ""
+  
+executor:
+  image:
+    registry: ""
+    repository: ""
+    tag: ""
+
+  dbStorage:
+    storageClass: ""
+
+  assessmentStorage:
+    type: "PVC"
+    pvc:
+      storageClass: ""
+
+jobController:
+  image:
+    registry: ""
+    repository: ""
+    tag: ""
+
+  dbStorage:
+    storageClass: ""
+
+registryConfigs:
+  - type: dockerhub
+    credentials:
+      username: ""
+      password: ""
+    allowedRepositories: ""
+    port: "443"
+    host: "https://registry-1.docker.io"
+    cronSchedule: "* * * * *"
+  - type: dockerhub
+    credentials:
+      username: ""
+      password: ""
+    allowedRepositories: ""
+    port: "443"
+    host: "https://registry-2.docker.io"
+    cronSchedule: "0 0 * * *"
